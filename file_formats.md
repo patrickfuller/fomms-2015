@@ -8,7 +8,7 @@ File input and output takes up a surprising amount of time. Nearly every grad st
 
 #####A large portion of your scripts are file reading and writing.
 
-![](img/code_structure.png)
+<img src="img/code_structure.png" height="250px" />
 
  * You waste a lot of time writing code and chasing down bugs unrelated to publishable work.
  * Even with that time, your file parsing code isn't good enough for you to want to share.
