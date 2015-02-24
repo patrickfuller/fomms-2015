@@ -8,8 +8,10 @@ File input and output takes up a surprising amount of time. Nearly every grad st
 
 #####A large portion of your scripts are file reading and writing.
 
- * File readers are minimal get-the-job-done level, and often break on valid inputs.
- * You waste a lot of time chasing down bugs unrelated to publishable work.
+![](img/code_structure.png)
+
+ * You waste a lot of time writing code and chasing down bugs unrelated to publishable work.
+ * Even with that time, your file parsing code isn't good enough for you to want to share.
  * Examples:
    - That one script I have where only 10% is actual script.
 
