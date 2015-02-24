@@ -4,7 +4,7 @@ Probably the most boring topic on this list.
 
 File input and output takes up a surprising amount of time. Nearly every grad student has attempted to wade through custom formats created by a long-gone postdoc, or struggled with an in-house parsing script that breaks for random reasons. It doesn't have to be this way.
 
-###Challenges
+###Does this sound like you?
 
 #####A large portion of your scripts are file reading and writing.
 
