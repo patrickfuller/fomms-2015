@@ -44,7 +44,19 @@ I've stripped out a lot of data from the original file so we can focus solely on
 | symmetry | Operators required to "unpack" crystal. More on this below. |
 | unitcell | A matrix representing the basic repeating unit of the crystal. You can convert atom locations with it: `cartesian = unitcell · fractional`. |
 
-We need to "unpack" the crystal to get a complete list of atoms. We do this by applying looping through the symmetry operators and the atoms. In pseudocode:
+The crystal as is looks pretty boring.
+
+<p align="center">
+ <img src="../img/packed.png" height="400px" />
+</p>
+
+We need to "unpack" the crystal to get a complete list of atoms. We do this by applying looping through the symmetry operators and the atoms, filling the unit cell.
+
+<p align="center">
+ <img src="../img/unpacked.png" height="400px" />
+</p>
+
+In pseudocode:
 
 ```python
 unpacked_atoms = []
