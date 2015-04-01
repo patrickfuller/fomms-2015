@@ -2,27 +2,17 @@
 Unpacking atoms by applying symmetry operators. Uses atom-atom collision
 detection to remove duplicates.
 """
+from ctypes import cdll, c_char_p, c_float, POINTER
 import json
+import os
 from sys import argv
 
+folder = os.path.normpath(os.path.dirname(__file__))
+lib = cdll.LoadLibrary(os.path.join(folder, "unpack.so"))
 
-def apply_symmetry(location, symmetry_operator):
-    """Applies a symmetry operator to a location without using eval."""
-    variables = {k: v for k, v in zip(["x", "y", "z"], location)}
-    output = []
-    for op in symmetry_operator.split(","):
-        total, sign = 0, 1
-        for i, char in enumerate(op):
-            if char == "+":
-                sign = 1
-            elif char == "-":
-                sign = -1
-            elif char == "/":
-                total += sign * float(op[i - 1]) / float(op[i + 1])
-            elif char in variables:
-                total += sign * variables[char]
-        output.append(total % 1)
-    return output
+CFloat3 = c_float * 3
+lib.applySymmetry.argtypes = (CFloat3, c_char_p)
+lib.applySymmetry.restype = POINTER(CFloat3)
 
 
 def unpack(packed_crystal):
@@ -34,7 +24,8 @@ def unpack(packed_crystal):
         for atom in packed_crystal["atoms"]:
 
             # Apply symmetry operator to atom location
-            x1, y1, z1 = apply_symmetry(atom["location"], operation)
+            x1, y1, z1 = lib.applySymmetry(CFloat3(*atom["location"]),
+                                           operation.encode("utf-8")).contents
 
             # Test if unpacked atom is colliding with an existing atom
             location_hash = "{x:.2f},{y:.2f},{z:.2f}".format(x=x1, y=y1, z=z1)

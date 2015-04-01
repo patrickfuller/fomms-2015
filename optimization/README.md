@@ -181,7 +181,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 ```
 ```
 ▶ python -m cProfile -s time unpack_v3.py large_crystal.json
-1732606 function calls (1732507 primitive calls) in 2.952 seconds
+1732606 function calls (1732507 primitive calls) in 2.530 seconds
 Ordered by: internal time
 
 ncalls  tottime  percall  cumtime  percall filename:lineno(function)
@@ -191,17 +191,59 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 169728  0.121    0.000    0.121    0.000   unpack_v3.py:11(<dictcomp>)
 ```
 
-###Going further
+###A quick boost: optimized compilers
+
+Better compilers are a quick way to get another boost. Without rewriting any code, we can tools such as [pypy](http://pypy.org/) to bring down that time. You can install pypy and run with `pypy unpack_v3.py large_crystal.json`. The speed results are included in the table at the end of this document.
+
+###Moving key components to a low-level language
 
 At this point, it seems we've gotten about as much performance as we can get out of python. Now, with the algorithms in place, we should start looking at the compilers and languages for optimization.
 
-Better compilers are a quick way to get another boost. Without rewriting any code, we can tools such as [pypy](http://pypy.org/) to bring down that time. To summarize our python solutions:
+For more speed, we should rewrite portions of the code in a low-level language like C. A best practice is to *only rewrite the speed bottlenecks*. Keep your basic stuff in a high-level language, and then call low-level functions for the fast parts. The reason is simple: C code takes more time to maintain properly. Whenever you "drop down" code to a low-level language, be sure that the performance benefit is worth the long-term maintenance cost.
+
+With that caveat in mind, let's look at an example. The [unpack_v4.c](/unpack_v4.c) file is a rewrite of `applySymmetry`, and [unpack_v4.py](/unpack_v4.py) shows how to call this function from python. With this "drop down", our performance further improves:
+
+```
+▶ gcc -shared -o unpack.so -fPIC -O3 unpack_v4.c
+```
+```
+▶ python -m cProfile -s time unpack_v4.py zeolite.json
+6540 function calls (6429 primitive calls) in 0.015 seconds
+Ordered by: internal time
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+1       0.005    0.005    0.008    0.008   unpack_v4.py:22(unpack)
+787     0.002    0.000    0.002    0.000   {method 'format' of 'str' objects}
+33      0.001    0.000    0.001    0.000   {built-in method __build_class__}
+2       0.001    0.000    0.001    0.000   {built-in method load_dynamic}
+```
+```
+▶ python -m cProfile -s time unpack_v4.py large_crystal.json
+383412 function calls (383301 primitive calls) in 1.560 seconds
+Ordered by: internal time
+
+ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+1       1.047    1.047    1.543    1.543   unpack_v4.py:22(unpack)
+169843  0.422    0.000    0.422    0.000   {method 'format' of 'str' objects}
+169728  0.069    0.000    0.069    0.000   {method 'encode' of 'str' objects}
+1       0.007    0.007    0.007    0.007   decoder.py:349(raw_decode)
+```
+
+###In summary
+
+Here are our version runs in one convenient table:
 
 | file | zeolite run time (s) | large crystal run time (s) |
 | --- | --- | --- |
 | unpack_v1.py | 0.189 | 5018.713 |
 | unpack_v2.py | 0.044 | 5.553 |
-| unpack_v3.py | 0.018 | 2.952 |
+| unpack_v3.py | 0.018 | 2.530 |
 | unpack_v3.py (pypy) | 0.143 | 1.567 |
+| unpack_v4.py (c) | 0.015 | 1.560 |
 
-For more speed, we should rewrite the code in a low-level language like C. A best practice is to *only rewrite the speed bottlenecks*. Keep your basic stuff in a high-level language, and then call low-level functions for the fast parts. Remember to check your memory leaks with a tool like [valgrind](http://valgrind.or), and always benchmark.
+There should be two takeaways here:
+
+  1. Optimize scientifically.
+  2. Algorithms matter.
+
+If you have any questions, please let us know by [opening an issue](https://github.com/patrickfuller/fomms-2015/issues)!
