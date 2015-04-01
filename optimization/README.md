@@ -44,7 +44,7 @@ I've stripped out a lot of data from the original file so we can focus solely on
 | symmetry | Operators required to "unpack" crystal. More on this below. |
 | unitcell | A matrix representing the basic repeating unit of the crystal. You can convert atom locations with it: `cartesian = unitcell · fractional`. |
 
-The crystal as is looks pretty boring.
+Consider the example [zeolite.json](zeolite.json). The crystal as is looks pretty boring.
 
 <p align="center">
  <img src="../img/packed.png" height="400px" />
@@ -77,11 +77,11 @@ for atom in atoms:
             unpacked_atoms.append(atom)
 ```
 
-Let's start with a basic approach - we'll check the distance between atoms as we unpack. A functional version of this can be found in [unpack_v1.py](/optimizationoptimization/unpack_v1.py) and run with `python unpack_v1.py crystal.json`.
+Let's start with a basic approach - we'll check the distance between atoms as we unpack. A functional version of this can be found in [unpack_v1.py](unpack_v1.py) and run with `python unpack_v1.py crystal.json`.
 
 ###A mental model: Big O notation
 
-Before diving into the tools, we need to develop a basic mental model. In algorithms, the quick-and-dirty approach is called [big O notation](http://en.wikipedia.org/wiki/Big_O_notation). We use this by ignoring most of the code and looking at the loop structure. Let's break down [unpack_v1.py](optimization/unpack_v1.py) into its loops.
+Before diving into the tools, we need to develop a basic mental model. In algorithms, the quick-and-dirty approach is called [big O notation](http://en.wikipedia.org/wiki/Big_O_notation). We use this by ignoring most of the code and looking at the loop structure. Let's break down [unpack_v1.py](unpack_v1.py) into its loops.
 
 ```python
 for operation in packed_crystal["symmetry"]:
@@ -102,7 +102,7 @@ Moving on to the pragmatic, it would be interesting to know exactly how many loo
 
 ###Mental model + practical tool = science
 
-Previously, we decided that the current algorithm will perform okay on small structures, but fail at larger scales. Let's test out this theory. In this repository are two crystals, [zeolite.json](/zeolite.json) and [large_crystal.json](/large_crystal.json). The zeolite has about 5 atoms and 100 symmetry operators, meaning we should expect something around 250,000 operations. Let's see how accurate we are by using python's built-in profiler.
+Previously, we decided that the current algorithm will perform okay on small structures, but fail at larger scales. Let's test out this theory. In this repository are two crystals, [zeolite.json](zeolite.json) and [large_crystal.json](large_crystal.json). The zeolite has about 5 atoms and 100 symmetry operators, meaning we should expect something around 250,000 operations. Let's see how accurate we are by using python's built-in profiler.
 
 ```
 ▶ python -m cProfile -s time unpack_v1.py zeolite.json
@@ -149,7 +149,7 @@ Let's clean up those numbers: *2,400,689,408 loops in 1.39 hours*. All things co
 
 If you remember one thing from this tutorial, make it this: **If you are optimizing O(n<sup>2</sup>) code, look for an O(n log(n)) solution**. In comparison, anything else you do will look like a micro-optimization.
 
-We won't get in to the details, but *O(n log(n))* is commonly achieved through [binary trees](http://en.wikipedia.org/wiki/Binary_tree) or [hash tables](http://en.wikipedia.org/wiki/Hash_table). In [unpack_v2.py](optimization/unpack_v2.py), we have replaced the inner loop with a hash table (a `set` in python). Let's profile.
+We won't get in to the details, but *O(n log(n))* is commonly achieved through [binary trees](http://en.wikipedia.org/wiki/Binary_tree) or [hash tables](http://en.wikipedia.org/wiki/Hash_table). In [unpack_v2.py](unpack_v2.py), we have replaced the inner loop with a hash table (a `set` in python). Let's profile.
 
 ```
 ▶ python -m cProfile -s time unpack_v2.py zeolite.json
@@ -178,7 +178,7 @@ This simple algorithm change resulted in a 4.3x speed improvement on the small c
 
 ###Let the profiler tell you where to optimize
 
-The algorithm is the main driver of performance, but the profiler output usually suggests other functions to rework. In this case, most of our time is eaten up by the built-in function `eval`. This function is known to be poor choice for a [number of reasons](http://stackoverflow.com/questions/86513/why-is-using-the-javascript-eval-function-a-bad-idea), and should generally be avoided. The [unpack_v3.py](optimization/unpack_v3.py) code replaces `eval` with a built-in algorithm. Let's see how this change affects performance.
+The algorithm is the main driver of performance, but the profiler output usually suggests other functions to rework. In this case, most of our time is eaten up by the built-in function `eval`. This function is known to be poor choice for a [number of reasons](http://stackoverflow.com/questions/86513/why-is-using-the-javascript-eval-function-a-bad-idea), and should generally be avoided. The [unpack_v3.py](unpack_v3.py) code replaces `eval` with a built-in algorithm. Let's see how this change affects performance.
 
 ```
 ▶ python -m cProfile -s time unpack_v3.py zeolite.json
@@ -213,7 +213,7 @@ At this point, it seems we've gotten about as much performance as we can get out
 
 For more speed, we should rewrite portions of the code in a low-level language like C. A best practice is to *only rewrite the speed bottlenecks*. Keep your basic stuff in a high-level language, and then call low-level functions for the fast parts. The reason is simple: C code takes more time to maintain properly. Whenever you "drop down" code to a low-level language, be sure that the performance benefit is worth the long-term maintenance cost.
 
-With that caveat in mind, let's look at an example. The [unpack_v4.c](/unpack_v4.c) file is a rewrite of `applySymmetry`, and [unpack_v4.py](/unpack_v4.py) shows how to call this function from python. With this "drop down", our performance further improves:
+With that caveat in mind, let's look at an example. The [unpack_v4.c](unpack_v4.c) file is a rewrite of `applySymmetry`, and [unpack_v4.py](unpack_v4.py) shows how to call this function from python. With this "drop down", our performance further improves:
 
 ```
 ▶ gcc -shared -o unpack.so -fPIC -O3 unpack_v4.c
