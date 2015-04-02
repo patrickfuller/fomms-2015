@@ -11,7 +11,6 @@ def unpack(packed_crystal):
     """Apply symmetry operators to atoms. Returns a list of unique atoms."""
     unpacked_atoms = []
     for operation in packed_crystal["symmetry"]:
-        op_1, op_2, op_3 = operation.split(",")
         for atom in packed_crystal["atoms"]:
 
             # Apply symmetry operator to atom location

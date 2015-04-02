@@ -30,7 +30,6 @@ def unpack(packed_crystal):
     unpacked_atoms = []
     location_hashes = set()
     for operation in packed_crystal["symmetry"]:
-        op_1, op_2, op_3 = operation.split(",")
         for atom in packed_crystal["atoms"]:
 
             # Apply symmetry operator to atom location

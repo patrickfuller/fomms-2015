@@ -9,7 +9,6 @@ from sys import argv
 
 folder = os.path.normpath(os.path.dirname(__file__))
 lib = cdll.LoadLibrary(os.path.join(folder, "unpack.so"))
-
 CFloat3 = c_float * 3
 lib.applySymmetry.argtypes = (CFloat3, c_char_p)
 lib.applySymmetry.restype = POINTER(CFloat3)
@@ -20,7 +19,6 @@ def unpack(packed_crystal):
     unpacked_atoms = []
     location_hashes = set()
     for operation in packed_crystal["symmetry"]:
-        op_1, op_2, op_3 = operation.split(",")
         for atom in packed_crystal["atoms"]:
 
             # Apply symmetry operator to atom location
