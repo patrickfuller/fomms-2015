@@ -46,8 +46,9 @@ def unpack(packed_crystal):
     return {"atoms": unpacked_atoms, "unitcell": packed_crystal["unitcell"]}
 
 
-# Load crystal data through Python's json support, unpack, and print output
+# Load crystal data through Python's json support, unpack, and write output
 with open(argv[-1]) as in_file:
     crystal = json.load(in_file)
 unpacked = unpack(crystal)
-print(json.dumps(unpacked))
+with open("unpacked_v3.json", "w") as out_file:
+    json.dump(unpacked, out_file)
