@@ -149,7 +149,7 @@ Let's clean up those numbers: *2,400,689,408 loops in 1.39 hours*. All things co
 
 If you remember one thing from this tutorial, make it this: **If you are optimizing O(n<sup>2</sup>) code, look for an O(n log(n)) solution**. In comparison, anything else you do will look like a micro-optimization.
 
-We won't get in to the details, but *O(n log(n))* is commonly achieved through [binary trees](http://en.wikipedia.org/wiki/Binary_tree) or [hash tables](http://en.wikipedia.org/wiki/Hash_table). In [unpack_v2.py](unpack_v2.py), we have replaced the inner loop with a hash table (a `set` in python). Let's profile.
+We won't get in to the details, but *O(n log(n))* is commonly achieved through [binary trees](https://www.youtube.com/watch?v=9Jry5-82I68) ([octrees](http://www.gamedev.net/page/resources/_/technical/game-programming/introduction-to-octrees-r3529) for 3D) or [hash tables](https://www.youtube.com/watch?v=MfhjkfocRR0). In [unpack_v2.py](unpack_v2.py), we have replaced the inner loop with a hash table (a `set` in python). Let's profile.
 
 ```
 ▶ python -m cProfile -s time unpack_v2.py zeolite.json
