@@ -129,7 +129,9 @@ Here are the profiler property descriptions, as stated in the [python documentat
 | percall | is the quotient of cumtime divided by primitive calls |
 | filename:lineno(function) | provides the respective data of each function |
 
-Time to test the theory. With about 3,000 atoms and 50 symmetry operators, our big O mental model suggests that the large crystal should take as many as *22,500,000,000* operations!
+You can better visualize the profiler output with tools such as [snakeviz](http://jiffyclub.github.io/snakeviz/). These tools do a good job of showing the hierarchical relationships in profiler output, and allow you to play with the data without re-running your code.
+
+Time to test our big O mental model. With about 3,000 atoms and 50 symmetry operators, we should expect the large crystal to take as many as *22,500,000,000* operations!
 
 ```
 ▶ python -m cProfile -s time unpack_v1.py large_crystal.json
