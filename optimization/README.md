@@ -147,7 +147,7 @@ ncalls     tottime  percall  cumtime  percall  filename:lineno(function)
 
 Let's clean up those numbers: *2,400,689,408 loops in 1.39 hours*. All things considered, our mental model was a decent approximation.
 
-###*Always* question the algorithm
+###*Always* challenge the algorithm
 
 If you remember one thing from this tutorial, make it this: **If you are optimizing O(n<sup>2</sup>) code, look for an O(n log(n)) solution**. In comparison, anything else you do will look like a micro-optimization.
 
@@ -205,43 +205,42 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 169728  0.121    0.000    0.121    0.000   unpack_v3.py:11(<dictcomp>)
 ```
 
-###A quick boost: optimized compilers
+You should use the profiler output to hunt down as many speed bottlenecks as possible. Keep iterating until the performance gains stop being worthwhile.
 
-Better compilers are a quick way to get another boost. Without rewriting any code, we can tools such as [pypy](http://pypy.org/) to bring down that time. You can install pypy and run with `pypy unpack_v3.py large_crystal.json`. The speed results are included in the table at the end of this document.
+###The code's optimized - now what?
 
-###Moving key components to a low-level language
+With the right code in place (and not a second before!), it's time to consider some more advanced tools. These won't get you the same performance boosts as above, but they're worth looking in to if you're writing long-running supercomputer code.
+
+#####A quick boost: optimized compilers
+
+Want to boost performance without having to do anything? Look into optimized compilers. Python has tools such as [pypy](http://pypy.org/) to bring down that run time. You can install pypy and run.
+
+```
+▶ time pypy unpack_v3.py large_crystal.json
+pypy unpack_v3.py large_crystal.json  1.55s user 0.02s system 99% cpu 1.567 total
+```
+
+#####Moving key components to a low-level language
 
 At this point, it seems we've gotten about as much performance as we can get out of python. Now, with the algorithms in place, we should start looking at the compilers and languages for optimization.
 
-For more speed, we should rewrite portions of the code in a low-level language like C. A best practice is to *only rewrite the speed bottlenecks*. Keep your basic stuff in a high-level language, and then call low-level functions for the fast parts. The reason is simple: C code takes more time to maintain properly. Whenever you "drop down" code to a low-level language, be sure that the performance benefit is worth the long-term maintenance cost.
+For more speed, we should rewrite portions of the code in a low-level language like C. A best practice is to *only rewrite the speed bottlenecks*. Keep most of your code in a high-level language, and then call low-level functions for the fast parts. The reason is simple: C code takes more time to maintain properly. Whenever you "drop down" code to a low-level language, be sure that the performance benefit is worth the long-term maintenance cost.
 
-With that caveat in mind, let's look at an example. The [unpack_v4.c](unpack_v4.c) file is a rewrite of `applySymmetry`, and [unpack_v4.py](unpack_v4.py) shows how to call this function from python. With this "drop down", our performance further improves:
+With that caveat in mind, let's look at an example. The [unpack_v4.c](unpack_v4.c) file is a rewrite of `applySymmetry`, and [unpack_v4.py](unpack_v4.py) shows how to call this function from python. With this "drop down", our performance further improves.
 
 ```
-▶ gcc -shared -o unpack.so -fPIC -O3 unpack_v4.c
-```
-```
-▶ python -m cProfile -s time unpack_v4.py zeolite.json
-6540 function calls (6429 primitive calls) in 0.015 seconds
-Ordered by: internal time
-
-ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-1       0.005    0.005    0.008    0.008   unpack_v4.py:22(unpack)
-787     0.002    0.000    0.002    0.000   {method 'format' of 'str' objects}
-33      0.001    0.000    0.001    0.000   {built-in method __build_class__}
-2       0.001    0.000    0.001    0.000   {built-in method load_dynamic}
+▶ gcc -shared -o unpack.so -fPIC -O3 unpack_v4.c  # Remember to compile before running!
 ```
 ```
 ▶ python -m cProfile -s time unpack_v4.py large_crystal.json
 383412 function calls (383301 primitive calls) in 1.560 seconds
-Ordered by: internal time
-
-ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-1       1.047    1.047    1.543    1.543   unpack_v4.py:22(unpack)
-169843  0.422    0.000    0.422    0.000   {method 'format' of 'str' objects}
-169728  0.069    0.000    0.069    0.000   {method 'encode' of 'str' objects}
-1       0.007    0.007    0.007    0.007   decoder.py:349(raw_decode)
 ```
+
+#####Using all of your processors
+
+When most programming languages were made, people programmed on single-core computers. Code written in these languages only uses one core. Now, even our phones have multiple CPU cores and integrated GPUs! These cores are all sitting around doing nothing - a waste of resources. Especially in the case of [embarrassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) operations, you're leaving speed behind by constraining your code to one core.
+
+There are two types of parallelization to consider: making your code distributable ([multiprocessing](https://docs.python.org/2/library/multiprocessing.html) and [accelerate](https://developer.nvidia.com/anaconda-accelerate) in python, or baked into new languages such as [julia](http://julialang.org/), [go](https://golang.org/), [rust](http://www.rust-lang.org/), and [d](http://dlang.org/)), and distributing jobs (ssh, mpi, pbs/qsub, [IPython parallel](https://ipython.org/ipython-doc/dev/parallel/parallel_process.html)). We won't get into this, but remember to consider scenarios outside of "one job per core".
 
 ###In summary
 
