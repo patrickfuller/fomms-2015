@@ -12,7 +12,7 @@ This workshop is designed around the "low-hanging fruit" of best practices - sim
 
 ##Topic links
 
- * [File formats](/file_formats.md)
+ * [File formats](/file_formats/README.md)
  * [Profiling and optimization](/optimization/README.md)
 
 ##TODO
