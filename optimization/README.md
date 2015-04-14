@@ -47,13 +47,13 @@ I've stripped out a lot of data from the original file so we can focus solely on
 Consider the example [zeolite.json](zeolite.json). The crystal as is looks pretty boring.
 
 <p align="center">
- <img src="../img/packed.png" height="400px" />
+ <img src="img/packed.png" height="400px" />
 </p>
 
 We need to "unpack" the crystal to get a complete list of atoms. We do this by applying looping through the symmetry operators and the atoms, filling the unit cell.
 
 <p align="center">
- <img src="../img/unpacked.png" height="400px" />
+ <img src="img/unpacked.png" height="400px" />
 </p>
 
 In pseudocode:

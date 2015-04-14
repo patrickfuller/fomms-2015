@@ -7,7 +7,9 @@ You probably don't think about it, but file input and output takes up a surprisi
 
 #####A large portion of your scripts are file reading and writing.
 
-<img src="img/code_structure.png" height="250px" />
+<p align="center">
+  <img src="img/one_file.png" height="150"/>
+</p>
 
 You start a project to test out a new idea, but have to deal with reading inputs and writing outputs. You may not think about it, but you've spent a lot of time working on code that is *unrelated to publishable work*.
 
@@ -15,7 +17,7 @@ Maybe, even with that time added, your inputs and outputs are still ugly. They'r
 
 #####You want to output code results, but your data doesn't fit nicely into a plain text file.
 
-So, you adopt an all-too-common short-term solution. You end up making your own format, or modifying a format you are familiar with (e.g. molfile, pdb).
+So, you adopt an all-too-common short-term solution. You end up making your own format, or modifying a format you are familiar with (e.g. molfile, pdb). Look at the files in [custom_format_examples](custom_format_examples) for real-world examples that we've personally had to handle.
 
 This may fix the problem today, but is a poor long-term solution. This is what we call [technical debt](http://en.wikipedia.org/wiki/Technical_debt), and it's a common symptom of working hard instead of working smart. You may save a couple of hours now, but you will pay that time back with interest due to multiple factors:
 
@@ -24,6 +26,10 @@ This may fix the problem today, but is a poor long-term solution. This is what w
  * [Scope creep](http://en.wikipedia.org/wiki/Scope_creep). Adding result terms here and there will gradually complicate your file parsing code. Give it a couple of years, and it will be a 10k-line mess.
 
 #####File format inconsistencies are a barrier to lab collaboration.
+
+<p align="center">
+  <img src="img/team_communication.png" height="250"/>
+</p>
 
 With enough short-term fixes, everyone ends up with their own workflow. You end up having to organize meetings (entire meetings!) just to decipher a colleague's work. You end up "learning" code quirks (code X breaks when you use tabs, you have to ctrl+alt+del after running code Y, code Z outputs a file that doesn't load into code X). You are concerning yourself with things that are not publishable, educational, or even interesting.
 
@@ -48,6 +54,10 @@ Let's see what this looks like using a standard in `json_format.py`. You offload
 Your colleagues immediately understand the format, and don't have to write any custom code to handle your format. The Go and Julia colleagues can use their standard lib, and the C++ and R coders can use their respective package managers to quickly install the functionality.
 
 ###For completeness, let's list the advantages.
+
+<p align="center">
+  <img src="img/no_file_io.png" height="150"/>
+</p>
 
 #####No more code for file reading and writing!
 
