@@ -53,9 +53,9 @@ To show how we can quickly load and unload data between languages, let's create 
 
 ```
 python step_1.py
-ruby step_2.py
+ruby step_2.rb
 node step_3.js
-g++ step_4.cpp -o step_4 && ./step_4  # I used boost
+g++ step_4.cpp && ./a.out
 julia step_5.jl
 ```
 
