@@ -12,15 +12,7 @@ This workshop is designed around the "low-hanging fruit" of best practices - sim
 
 ##Topic links
 
+ * [Package managers](/package_managers/README.md)
  * [File formats](/file_formats/README.md)
  * [Profiling and optimization](/optimization/README.md)
-
-##TODO
-
- * [Package managers](/package_managers.md)
- * [Version control](/version_control.md)
-
-##Other topics (TODO, not covered)
- * [Style guides](/style_guides.md)
- * [IPython and web-based supercomputing](/ipython-supercomputing.md)
- * [Testing](/testing.md)
+ * [Version control](/version_control/README.md)
