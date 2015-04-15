@@ -35,6 +35,6 @@ Git is the standard, and, like json, there are *so many* users that you can find
  * [A three-hour youtube video explaining git, Github, and science](https://www.youtube.com/watch?v=T0BE9ApIegc)
  * [A stack overflow post on git for beginners](http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide)
  * [An interactive web app for learning git, by Github](https://try.github.io/levels/1/challenges/1)
- * [A git tutorial as a lesson in a scientific programming tutorial](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-7-Revision-Control-Software.ipynb)
+ * [A git lesson in a scientific programming tutorial](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-7-Revision-Control-Software.ipynb)
 
 ######TODO Although the listed tutorials are going to be better than what we write, we should still showcase basic git functionality
