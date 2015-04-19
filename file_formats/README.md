@@ -39,6 +39,33 @@ Whenever you feel you're doing something inefficiently, look to solutions adopte
 
 Let's take a step back and talk about file formats. Like you, many programmers have needed to read and write data to files. They've done it so much that they have adopted data exchange standards, and they've become so prevalent that many languages support them in their standard library. There are a lot of standards out there: [YAML](http://symfony.com/doc/current/components/yaml/yaml_format.html), [TOML](https://github.com/toml-lang/toml), [XML](http://www.w3schools.com/xml/), [JSON](http://www.w3schools.com/json/), [CSV](http://en.wikipedia.org/wiki/Comma-separated_values), and more. Most of us are okay with CSV data; custom file formats seem to arise only when our data doesn't fit nicely into a spreadsheet. All of the other above formats could be used to fix this, but JSON is the dominant standard due to its simplicity and ubiquity.
 
+###What does the file format look like?
+
+From the [wiki](http://en.wikipedia.org/wiki/JSON):
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Smith",
+  "is_alive": true,
+  "age": 25,
+  "address": {
+    "street": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10021-3100"
+  },
+  "phone_numbers": [
+    { "type": "home", "number": "212 555-1234" },
+    { "type": "office", "number": "646 555-4567" }
+  ],
+  "children": [],
+  "spouse": null
+}
+```
+
+The basic types are *Number*, *String*, *Boolean*, *null*, *Array*, and *Object*. It may not seem like much, but it's enough to cover most use cases. Also remember that the whitespace doesn't matter! Just like many programming languages, the brackets are used instead of whitespace to show relationships.
+
 ###An example
 
 To show how we can quickly load and unload data between languages, let's create a json file with python, and then load and unload it in a couple of other languages. Running each version in order reads a json file, edits the data, and writes it as output.
