@@ -39,14 +39,6 @@ Whenever you feel you're doing something inefficiently, look to solutions adopte
 
 Let's take a step back and talk about file formats. Like you, many programmers have needed to read and write data to files. They've done it so much that they have adopted data exchange standards, and they've become so prevalent that many languages support them in their standard library. There are a lot of standards out there: [YAML](http://symfony.com/doc/current/components/yaml/yaml_format.html), [TOML](https://github.com/toml-lang/toml), [XML](http://www.w3schools.com/xml/), [JSON](http://www.w3schools.com/json/), [CSV](http://en.wikipedia.org/wiki/Comma-separated_values), and more. Most of us are okay with CSV data; custom file formats seem to arise only when our data doesn't fit nicely into a spreadsheet. All of the other above formats could be used to fix this, but JSON is the dominant standard due to its simplicity and ubiquity.
 
-###A common scenario
-
-Your data doesn't fit into a CSV, so you're going to reappropriate a molfile to hold values. You've used molfiles before, and, even though you haven't read through [the 100-page spec](http://c4.cabrillo.edu/404/ctfile.pdf), you feel confident that you can throw something together. You'll need code to read and write the data, documentation to explain usage to collaborators, and development time to address bugs as they pop up. If your code gets even a moderate amount of use, you'll end up having to read that spec.
-
-One of your colleagues only works in C++, another in R, another in Julia, and another in Go. If they want to collaborate, they have to write code to parse your custom format, and now *they're* on the hook to maintain non-publishable code.
-
-Your colleagues immediately understand the format, and don't have to write any custom code to handle your format. The Go and Julia colleagues can use their standard lib, and the C++ and R coders can use their respective package managers to quickly install the functionality.
-
 ###An example
 
 To show how we can quickly load and unload data between languages, let's create a json file with python, and then load and unload it in a couple of other languages. Running each version in order reads a json file, edits the data, and writes it as output.
