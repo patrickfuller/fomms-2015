@@ -8,7 +8,7 @@ You probably don't think about it, but file input and output takes up a surprisi
 #####A large portion of your scripts are file reading and writing.
 
 <p align="center">
-  <img src="img/one_file.png" height="150"/>
+  <img src="img/one_file.png" height="250"/>
 </p>
 
 You start a project to test out a new idea, but have to deal with reading inputs and writing outputs. You may not think about it, but you've spent a lot of time working on code that is *unrelated to publishable work*.
@@ -28,7 +28,7 @@ This may fix the problem today, but is a poor long-term solution. This is what w
 #####File format inconsistencies are a barrier to lab collaboration.
 
 <p align="center">
-  <img src="img/team_communication.png" height="250"/>
+  <img src="img/team_communication.png" height="400"/>
 </p>
 
 With enough short-term fixes, everyone ends up with their own workflow. You end up having to organize meetings (entire meetings!) just to decipher a colleague's work. You end up "learning" code quirks (code X breaks when you use tabs, you have to ctrl+alt+del after running code Y, code Z outputs a file that doesn't load into code X). You are concerning yourself with things that are not publishable, educational, or even interesting.
@@ -84,7 +84,7 @@ Look through the files, and you'll see that they're all very short. With a coupl
 ###The advantages, in list form
 
 <p align="center">
-  <img src="img/no_file_io.png" height="150"/>
+  <img src="img/no_file_io.png" height="250"/>
 </p>
 
 #####No more code for file reading and writing!
