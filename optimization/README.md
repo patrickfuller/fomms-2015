@@ -66,7 +66,7 @@ for atom in atoms:
         unpacked_atoms.append(atom)
 ```
 
-This is the gist of the algorithm, but we need to account for one major real-world issue: many packed crystal files are malformed. They commonly contain extra atoms or symmetry operators, so we need to account for this. The solution is to detect collisions as you unpack. To do this, we will need to add a step to the pseudocode:
+This is the gist of the algorithm, but we need to account for one other challenge: the removal of duplicate atoms. These crystal representations are outputted by a range of software, and commonly contain extra atoms or symmetry operators. We need to account for this. The solution is to detect collisions as you unpack. To do this, we will need to add a step to the pseudocode:
 
 ```python
 unpacked_atoms = []
