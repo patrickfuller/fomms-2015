@@ -236,6 +236,8 @@ With that caveat in mind, let's look at an example. The [unpack_v4.c](unpack_v4.
 383412 function calls (383301 primitive calls) in 1.560 seconds
 ```
 
+This uses [ctypes](https://docs.python.org/2/library/ctypes.html), which is in the standard lib. However, I recommend [cffi](https://cffi.readthedocs.org/en/latest/) (`conda install cffi`). It does the same thing, but allows you to accomplish it by simply pasting headers into your code. You should also check out using newer languages instead of C, as they can reduce development time without impacting speed. For example, [the same approach works with rust](https://www.youtube.com/watch?v=3CwJ0MH-4MA).
+
 #####Using all of your processors
 
 When most programming languages were made, people programmed on single-core computers. Code written in these languages only uses one core. Now, even our phones have multiple CPU cores and integrated GPUs! These cores are all sitting around doing nothing - a waste of resources. Especially in the case of [embarrassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) operations, you're leaving speed behind by constraining your code to one core.
