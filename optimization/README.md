@@ -224,6 +224,10 @@ pypy unpack_v3.py large_crystal.json  1.55s user 0.02s system 99% cpu 1.567 tota
 
 At this point, it seems we've gotten about as much performance as we can get out of python. Now, with the algorithms in place, we should start looking at the compilers and languages for optimization.
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jrjohansson/scientific-python-lectures/master/images/optimizing-what.png" height="300" />
+</p>
+
 For more speed, we should rewrite portions of the code in a low-level language like C. A best practice is to *only rewrite the speed bottlenecks*. Keep most of your code in a high-level language, and then call low-level functions for the fast parts. The reason is simple: C code takes more time to maintain properly. Whenever you "drop down" code to a low-level language, be sure that the performance benefit is worth the long-term maintenance cost.
 
 With that caveat in mind, let's look at an example. The [unpack_v4.c](unpack_v4.c) file is a rewrite of `applySymmetry`, and [unpack_v4.py](unpack_v4.py) shows how to call this function from python. With this "drop down", our performance further improves.
@@ -237,6 +241,8 @@ With that caveat in mind, let's look at an example. The [unpack_v4.c](unpack_v4.
 ```
 
 This uses [ctypes](https://docs.python.org/2/library/ctypes.html), which is in the standard lib. However, I recommend [cffi](https://cffi.readthedocs.org/en/latest/) (`conda install cffi`). It does the same thing, but allows you to accomplish it by simply pasting headers into your code. You should also check out using newer languages instead of C, as they can reduce development time without impacting speed. For example, [the same approach works with rust](https://www.youtube.com/watch?v=3CwJ0MH-4MA).
+
+On top of being the source of the above graph, [this lesson](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-6A-Fortran-and-C.ipynb) provides many more examples for "dropping down" to C and Fortran.
 
 #####Using all of your processors
 
