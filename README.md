@@ -4,7 +4,7 @@
 
 #FOMMS Workshop Topics
 
-In computational chemistry, we spend a *lot* of time working with computers. However, very few of us have formal training in computer programming. There is little short-term incentive for us to fix this, which has led us to adopt some inefficient programming practices. Some interesting reads on this include [*Nobody ever gets credit for fixing problems that never happened*](http://web.mit.edu/nelsonr/www/Repenning=Sterman_CMR_su01_.pdf) and [*Why do many talented scientists write horrible software?*](http://academia.stackexchange.com/questions/17781/why-do-many-talented-scientists-write-horrible-software)
+In computational chemistry, we spend a *lot* of time working with computers. However, very few of us have formal training in computer programming. There is little short-term incentive for us to fix this, which has led us to adopt some inefficient programming practices. Some interesting reads on this include [*Nobody ever gets credit for fixing problems that never happened*](http://web.mit.edu/nelsonr/www/Repenning=Sterman_CMR_su01_.pdf), [*Why do many talented scientists write horrible software?*](http://academia.stackexchange.com/questions/17781/why-do-many-talented-scientists-write-horrible-software), and [*Why learning to code is so damn hard*](http://www.vikingcodeschool.com/posts/why-learning-to-code-is-so-damn-hard).
 
 This workshop is designed around the "low-hanging fruit" of best practices - simple fixes that will result in big improvements to your productivity. The topics are admittedly boring, but doing things right will save you from having to think about them again.
 
