@@ -148,3 +148,5 @@ features. Look into two topics in particular:
  * Making your projects installable through package managers. It's a good practice
    that allows you to easily share your project with others.
    [Here's a pip tutorial](https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/).
+ * For every language you use, read through the most installed packages. It's a good
+   way to learn what's out there. [Here's a list for python](http://pypi-ranking.info/alltime).
