@@ -1,5 +1,5 @@
-File formats (aka the most boring topic ever)
-=============================================
+File formats
+============
 
 You probably don't think about it, but file input and output takes up a surprising amount of time. Nearly every grad student has attempted to wade through custom formats created by a long-gone postdoc, or struggled with an in-house parsing script that breaks for random reasons. It doesn't have to be this way!
 
