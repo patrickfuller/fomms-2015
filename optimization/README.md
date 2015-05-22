@@ -96,6 +96,8 @@ We have three loops: `symmetry`, `atoms`, and `unpacked_atoms`. The inner loop w
 
 In the worst case, the length of `unpacked_atoms` will be the product of the lengths of `symmetry` and `atoms`. Let's call this value *n*. Remembering we're roughly approximating, this means that the inner loop will get called as many as *0.5n<sup>2</sup>* times. In big O notation, we drop all but the highest-level operators. This algorithm is *O(n<sup>2</sup>)*. This is a huge red flag - algorithm time increases with the square of the number of atoms and symmetry operators! This means that, while the algorithm may work fine on a small scale, it will fail spectacularly on large crystals.
 
+If you want a better explanation, [this stack overflow post](http://stackoverflow.com/questions/487258/plain-english-explanation-of-big-o) provides great examples.
+
 ###A practical tool: Profilers
 
 Moving on to the pragmatic, it would be interesting to know exactly how many loops are occurring, and exactly how long the program is spending on each line of code. As a first pass, you may have tried to do something like this by using the `time` command and littering print statements throughout your code. If you've done this, then you're going to love [profilers](http://en.wikipedia.org/wiki/Profiling_%28computer_programming%29). We'll use them below.
