@@ -24,10 +24,11 @@ This workshop is designed around the "low-hanging fruit" of best practices - sim
 
 ##How to teach yourself
 
- * [Software carpentry](https://www.youtube.com/watch?v=HhwElTL-mdI)
+ * [Software Carpentry](https://www.youtube.com/watch?v=HhwElTL-mdI)
    - This organization focuses solely on teaching scientists how to code. Highly relevant!
  * Conference videos
    - Go to youtube and search. Here's a [good example](https://www.youtube.com/watch?v=OSGv2VnC0go). [Here's another](https://www.youtube.com/watch?v=HhwElTL-mdI).
  * The popularity approach
    - Read through the [top posts on stack overflow](http://stackoverflow.com/questions?sort=votes). If they use terminology or tools you don't understand, take the time to learn them.
-   - Similarly, read through the [most starred github repositories](https://github.com/search?q=stars:%3E1&s=stars&type=Repositories). Learn *why* each repository is so popular, and understand how it may be helpful to you.
+   - Similarly, read through the [most starred github repositories](https://github.com/search?q=stars:%3E1&s=stars&type=Repositories). Learn *why* each repository is popular, and understand how it may be helpful to you.
+   - Github also has a [science showcase](https://github.com/showcases/science) (complete with IPython and Software Carpentry repos). The same applies - read and learn.
