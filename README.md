@@ -32,3 +32,4 @@ This workshop is designed around the "low-hanging fruit" of best practices - sim
    - Read through the [top posts on stack overflow](http://stackoverflow.com/questions?sort=votes). If they use terminology or tools you don't understand, take the time to learn them.
    - Similarly, read through the [most starred github repositories](https://github.com/search?q=stars:%3E1&s=stars&type=Repositories). Learn *why* each repository is popular, and understand how it may be helpful to you.
    - Github also has a [science showcase](https://github.com/showcases/science) (complete with IPython and Software Carpentry repos). The same applies - read and learn.
+   - You can also read through the most downloaded packages by package manager. Here's [javascript's npm](https://www.npmjs.com/browse/star) and [python's pip](http://pypi-ranking.info/alltime).
