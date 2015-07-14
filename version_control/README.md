@@ -38,3 +38,8 @@ Git is the standard, and, like json, there are *so many* users that you can find
  * [A git lesson in a scientific programming tutorial](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-7-Revision-Control-Software.ipynb)
 
 ######TODO Although the listed tutorials are going to be better than what we write, we should still showcase basic git functionality
+
+> A "Hello World" example for version control
+> Making your first commit
+ 
+
