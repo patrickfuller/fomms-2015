@@ -40,7 +40,7 @@ Git is the standard, and, like json, there are *so many* users that you can find
 ######TODO Although the listed tutorials are going to be better than what we write, we should still showcase basic git functionality
 
 > A "Hello World" example for version control
-> Making your first commit
-> Making a second commit
+* Making your first commit
+* Making a second commit
  
 
