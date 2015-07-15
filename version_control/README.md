@@ -41,13 +41,31 @@ Git is the standard, and, like json, there are *so many* users that you can find
 ######TODO Although the listed tutorials are going to be better than what we write, we should still showcase basic git functionality
 -->
 
-A "Hello World" example for version control
+**Install Git (if necessary)**
+* Windows (go to github)
+  * https://windows.github.com/
+* Mac (brew install git)
+  * If you don't have homebrew go to (http://brew.sh/) for instructions
+* Linux
+  * `sudo apt-get install git`
+  * `sudo yum install git`
+  * etc.
+
+**Configure Git (if necessary)**
+* Using the commandline
+  * Open "GitShell" on Windows
+  * Otherwise just open a terminal
+* Type:
+  * `git config --global user.name "John Doe"`
+  * `git config --global user.email johndoe@example.com`
+
+**A "Hello World" example for version control**
 * Creating your first repository
 * Start with a folder you already have OR
 * Create a new folder (which is what we'll do now)
-  * mkdir firstrepo
-  * git init
-  * cd firstrepo , touch helloworld.txt
+  * `mkdir firstrepo`
+  * `git init`
+  * `cd firstrepo` , `touch helloworld.txt`
   * notice that git has detected a change to the repository already
 * Create a file called helloworld.txt
 * Making your first commit
