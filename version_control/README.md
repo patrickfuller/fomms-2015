@@ -37,10 +37,18 @@ Git is the standard, and, like json, there are *so many* users that you can find
  * [An interactive web app for learning git, by Github](https://try.github.io/levels/1/challenges/1)
  * [A git lesson in a scientific programming tutorial](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-7-Revision-Control-Software.ipynb)
 
+<!--
 ######TODO Although the listed tutorials are going to be better than what we write, we should still showcase basic git functionality
+-->
 
-> A "Hello World" example for version control
+A "Hello World" example for version control
+* Creating your first repository
+> * Start with a folder you already have OR
+> * Create a new folder (which is what we'll do now)
+>> * mkdir firstrepo
+>> * git init
+>> * cd firstrepo , touch helloworld.txt
+>> * notice that git has detected a change to the repository already
+* Create a file called helloworld.txt
 * Making your first commit
 * Making a second commit
- 
-
