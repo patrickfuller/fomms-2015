@@ -72,7 +72,7 @@ Git is the standard, and, like json, there are *so many* users that you can find
   * `git commit` <-- you will be asked to describe the new change
   * helloworld.txt is now permanently part of your git repository
   * `rm helloworld.txt`
-  * `git checkout -- .\helloworld.txt`
+  * `git checkout -- helloworld.txt`
   * Let's add a line to helloworld.txt, open text editor and type "2+2=5"
   * If you add a bunch of files, you don't have to individually stage them
   * `git add *.txt`
@@ -83,3 +83,26 @@ Git is the standard, and, like json, there are *so many* users that you can find
   * `git diff`
   * Ah, it use to say "2+2=5" which is clearly wrong, so you can safely commit
   * `git commit` <-- "corrected basic arithmetic error"
+
+**Contributing to projects on GitHub**
+* A big benefit of good version control is working in teams on a project
+* GitHub is a very popular platform for hosting Git repositories and makes everything easier to work with
+* Start by forking a GitHub repository (you will need a GitHub account)
+  * Go to https://github.com/patrickfuller/fomms-2015
+  * Click "fork" on the upper right hand corner of the screen
+* You have a forked copy of the project online, but you also want a local copy on your laptop
+  * Navigate to a folder where you want to put the downloaded repository
+  * `git clone https://github.com/[YOUR ACCOUNT NAME]/fomms-2015.git`
+  * That's it, you've now downloaded a fork of our tutorial repository
+* Make a change to it (any change!)
+  * Open the "README.MD" file in a text editor
+  * Change some text
+  * `git add README.MD`
+  * `git diff` <-- double check your changes
+  * `git commit`
+  * The change you've made is still local to your computer
+  * `git push origin master`
+* Now that your change is made in your online GitHub repository, you can request that your change is merged with the "master" copy by issuing a pull request
+  * Go to your GitHub repository and click on pull request
+  * Then click on "Issue pull request" and describe in detail your changes
+  * The project maintainer will then approve if the pull request if he/she likes it, or comment on your changes if there is a problem
