@@ -37,10 +37,6 @@ Git is the standard, and, like json, there are *so many* users that you can find
  * [An interactive web app for learning git, by Github](https://try.github.io/levels/1/challenges/1)
  * [A git lesson in a scientific programming tutorial](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-7-Revision-Control-Software.ipynb)
 
-<!--
-######TODO Although the listed tutorials are going to be better than what we write, we should still showcase basic git functionality
--->
-
 **Install Git (if necessary)**
 * Windows (go to github)
   * https://windows.github.com/
