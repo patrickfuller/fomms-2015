@@ -61,8 +61,25 @@ Git is the standard, and, like json, there are *so many* users that you can find
 * Create a new folder (which is what we'll do now)
   * `mkdir firstrepo`
   * `git init`
-  * `cd firstrepo` , `touch helloworld.txt`
+  * `cd firstrepo`
+* Create your first few files, "stage" them, and then commit them
+  * `touch helloworld.txt`
   * notice that git has detected a change to the repository already
-* Create a file called helloworld.txt
-* Making your first commit
-* Making a second commit
+  * `touch goodbyeworld.txt`
+  * Let's say we're pretty sure we want to commit helloworld but not necessarily goodbyeworld
+  * `git add helloworld.txt`
+  * `git status`
+  * `git commit` <-- you will be asked to describe the new change
+  * helloworld.txt is now permanently part of your git repository
+  * `rm helloworld.txt`
+  * `git checkout -- .\helloworld.txt`
+  * Let's add a line to helloworld.txt, open text editor and type "2+2=5"
+  * If you add a bunch of files, you don't have to individually stage them
+  * `git add *.txt`
+  * `git commit` <-- now both of our text files are committed
+* Looking at differences between versions
+  * Open helloworld in a text editor and edit the first line to "2+2=4"
+  * Assume you have a very short memory and want to know what helloworld.txt used to contain before you commit
+  * `git diff`
+  * Ah, it use to say "2+2=5" which is clearly wrong, so you can safely commit
+  * `git commit` <-- "corrected basic arithmetic error"
