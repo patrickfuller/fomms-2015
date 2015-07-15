@@ -43,12 +43,12 @@ Git is the standard, and, like json, there are *so many* users that you can find
 
 A "Hello World" example for version control
 * Creating your first repository
-> * Start with a folder you already have OR
-> * Create a new folder (which is what we'll do now)
->> * mkdir firstrepo
->> * git init
->> * cd firstrepo , touch helloworld.txt
->> * notice that git has detected a change to the repository already
+* Start with a folder you already have OR
+* Create a new folder (which is what we'll do now)
+  * mkdir firstrepo
+  * git init
+  * cd firstrepo , touch helloworld.txt
+  * notice that git has detected a change to the repository already
 * Create a file called helloworld.txt
 * Making your first commit
 * Making a second commit
