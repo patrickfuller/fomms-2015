@@ -11,7 +11,7 @@ How do you know these are helping? Can you quantify benefits? Are you limited by
 
 > [Donald Knuth](http://en.wikipedia.org/wiki/Donald_Knuth)
 
-###A more scientific approach
+### A more scientific approach
 
 In order to optimize code, we need a good workflow. We need to be able to quantify speed bottlenecks, understand how speed relates to algorithmic complexity, and sort optimization projects by effectiveness - all before touching the code. Let's do this through an example: unpacking crystal structures. *It's hard to write good examples for optimization - please bear with us!*
 
@@ -79,7 +79,7 @@ for atom in atoms:
 
 Let's start with a basic approach - we'll check the distance between atoms as we unpack. A functional version of this can be found in [unpack_v1.py](unpack_v1.py) and run with `python unpack_v1.py crystal.json`.
 
-###A mental model: Big O notation
+### A mental model: Big O notation
 
 Before diving into the tools, we need to develop a basic mental model. In algorithms, the quick-and-dirty approach is called [big O notation](http://en.wikipedia.org/wiki/Big_O_notation). We use this by ignoring most of the code and looking at the loop structure. Let's break down [unpack_v1.py](unpack_v1.py) into its loops.
 
@@ -98,11 +98,11 @@ In the worst case, the length of `unpacked_atoms` will be the product of the len
 
 If you want a better explanation, [this stack overflow post](http://stackoverflow.com/questions/487258/plain-english-explanation-of-big-o) provides great examples.
 
-###A practical tool: Profilers
+### A practical tool: Profilers
 
 Moving on to the pragmatic, it would be interesting to know exactly how many loops are occurring, and exactly how long the program is spending on each line of code. As a first pass, you may have tried to do something like this by using the `time` command and littering print statements throughout your code. If you've done this, then you're going to love [profilers](http://en.wikipedia.org/wiki/Profiling_%28computer_programming%29). We'll use them below.
 
-###Mental model + practical tool = science
+### Mental model + practical tool = science
 
 Previously, we decided that the current algorithm will perform okay on small structures, but fail at larger scales. Let's test out this theory. In this repository are two crystals, [zeolite.json](zeolite.json) and [large_crystal.json](large_crystal.json). The zeolite has about 5 atoms and 100 symmetry operators, meaning we should expect something around 250,000 operations. Let's see how accurate we are by using python's built-in profiler.
 
@@ -149,7 +149,7 @@ ncalls     tottime  percall  cumtime  percall  filename:lineno(function)
 
 Let's clean up those numbers: *2,400,689,408 loops in 1.39 hours*. All things considered, our mental model was a decent approximation.
 
-###*Always* challenge the algorithm
+### *Always* challenge the algorithm
 
 If you remember one thing from this tutorial, make it this: **If you are optimizing O(n<sup>2</sup>) code, look for an O(n log(n)) solution**. In comparison, anything else you do will look like a micro-optimization.
 
@@ -180,7 +180,7 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
 This simple algorithm change resulted in a 4.3x speed improvement on the small crystal, and a staggering **900x improvement** for the large crystal!
 
-###Let the profiler tell you where to optimize
+### Let the profiler tell you where to optimize
 
 The algorithm is the main driver of performance, but the profiler output usually suggests other functions to rework. In this case, most of our time is eaten up by the built-in function `eval`. This function is known to be poor choice for a [number of reasons](http://stackoverflow.com/questions/86513/why-is-using-the-javascript-eval-function-a-bad-idea), and should generally be avoided. The [unpack_v3.py](unpack_v3.py) code replaces `eval` with a built-in algorithm. Let's see how this change affects performance.
 
@@ -209,11 +209,11 @@ ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
 You should use the profiler output to hunt down as many speed bottlenecks as possible. Keep iterating until the performance gains stop being worthwhile.
 
-###The code's optimized - now what?
+### The code's optimized - now what?
 
 With the right code in place (and not a second before!), it's time to consider some more advanced tools. These won't get you the same performance boosts as above, but they're worth looking in to if you're writing long-running supercomputer code.
 
-#####A quick boost: optimized compilers
+##### A quick boost: optimized compilers
 
 Want to boost performance without having to do anything? Look into optimized compilers. Python has tools such as [pypy](http://pypy.org/) to bring down that run time. You can install pypy and run.
 
@@ -222,7 +222,7 @@ Want to boost performance without having to do anything? Look into optimized com
 pypy unpack_v3.py large_crystal.json  1.55s user 0.02s system 99% cpu 1.567 total
 ```
 
-#####Moving key components to a low-level language
+##### Moving key components to a low-level language
 
 At this point, it seems we've gotten about as much performance as we can get out of python. Now, with the algorithms in place, we should start looking at the compilers and languages for optimization.
 
@@ -246,13 +246,13 @@ This uses [ctypes](https://docs.python.org/2/library/ctypes.html), which is in t
 
 On top of being the source of the above graph, [this lesson](http://nbviewer.ipython.org/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-6A-Fortran-and-C.ipynb) provides many more examples for "dropping down" to C and Fortran.
 
-#####Using all of your processors
+##### Using all of your processors
 
 When most programming languages were made, people programmed on single-core computers. Code written in these languages only uses one core. Now, even our phones have multiple CPU cores and integrated GPUs! These cores are all sitting around doing nothing - a waste of resources. Especially in the case of [embarrassingly parallel](https://en.wikipedia.org/wiki/Embarrassingly_parallel) operations, you're leaving speed behind by constraining your code to one core.
 
 There are two types of parallelization to consider: making your code distributable ([multiprocessing](https://docs.python.org/2/library/multiprocessing.html) and [accelerate](https://developer.nvidia.com/anaconda-accelerate) in python, or baked into new languages such as [julia](http://julialang.org/), [go](https://golang.org/), [rust](http://www.rust-lang.org/), and [d](http://dlang.org/)), and distributing jobs (ssh, mpi, pbs/qsub, [IPython parallel](https://ipython.org/ipython-doc/dev/parallel/parallel_process.html)). We won't get into this, but remember to consider scenarios outside of "one job per core".
 
-###In summary
+### In summary
 
 Here are our version runs in one convenient table:
 

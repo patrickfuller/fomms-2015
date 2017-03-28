@@ -7,7 +7,7 @@ If you install these the same way you install programs like MS Office
 (e.g. download executable and run), you will overwhelm yourself very quickly.
 Luckily, [package managers](http://en.wikipedia.org/wiki/Package_manager) exist.
 
-###You already use package managers!
+### You already use package managers!
 
 Have you ever installed an app on your phone, or a game through steam? If you
 have, then you already use package managers.
@@ -26,7 +26,7 @@ Code package managers do all of this for you - and more! We'll focus on the
 basic features here, but you should take the time to read up on the more advanced
 topics when you get a chance.
 
-###Any caveats?
+### Any caveats?
 
 While there has been a push to have only one package manager that controls
 everything, the current state of programming is more divided. Most programming
@@ -43,14 +43,14 @@ support or ignore. Large projects generally support everything, but small
 domain-specific packages (like those commonly used in science) rarely support
 every (or any) package manager. Resist the urge to give up when things get tough!
 
-###Package managers you should know
+### Package managers you should know
 
 Below, we will break package managers into language-specific and OS-specific. Wherever
 possible, We're providing you the most popular way to do things without getting too
 much into the *why*. From here, we'll install a package manager and walk through
 its features.
 
-#####Platform-specific package managers
+##### Platform-specific package managers
 
 These are package managers that are only available on one operating system. These
 usually involve packages that need to be compiled, so expect to see a lot of
@@ -60,7 +60,7 @@ Fortran, C, and C++ libraries.
  * Mac: [Homebrew](http://brew.sh/) is the current standard.
  * Windows: [Chocolatey](https://chocolatey.org/) is fairly popular.
 
-#####Language-specific package managers
+##### Language-specific package managers
 
 Many other languages come with their own cross-platform package managers. It's
 generally recommended to use these over platform-specific managers when possible.
@@ -72,7 +72,7 @@ generally recommended to use these over platform-specific managers when possible
  * R: [install.packages](http://ww2.coastal.edu/kingw/statistics/R-tutorials/package.html)
  * Python: [pip](https://docs.python.org/3/installing/)
 
-#####Conda
+##### Conda
 
 [Conda](http://conda.pydata.org/docs/) is a package manager developed for scientists.
 It's not platform specific, but it's not really language specific either.
@@ -88,7 +88,7 @@ Features include:
 Conda is 1. interesting and 2. won't mess up your environment. In other words,
 it's a great workshop package manager. Let's install it and see how it works.
 
-###Workshop - installing conda
+### Workshop - installing conda
 
  * Go to [this site](http://conda.pydata.org/miniconda.html#miniconda) and download
    the Python 3 version for your OS.
@@ -112,31 +112,31 @@ a style guide.
 Let's go back to our above list of package manager benefits, and show how we would
 use conda in each scenario.
 
-#####Centralized searching
+##### Centralized searching
 
 `conda search django` will search for all packages with "django" in the name.
 
-#####One-click install and uninstall processes
+##### One-click install and uninstall processes
 
 `conda install django` installs the [Django web framework](https://www.djangoproject.com/).
 `conda remove django` removes it.
 
-#####Automatically installs the right version for your device
+##### Automatically installs the right version for your device
 
 When you typed `conda install django`, it grabbed the most recent version that
 works with your OS, architecture, and python version. Much like google play,
 it did it all without you noticing.
 
-#####Easy to view all installed packages and versions
+##### Easy to view all installed packages and versions
 
 `conda list`. Pretty straightforward.
 
-#####One-click "update all" functionality
+##### One-click "update all" functionality
 
 `conda update --all` will go through every installed package, check for newer
 versions, and update when needed.
 
-###Moving forward
+### Moving forward
 
 This is as far as we're going with package managers. Spend some time getting
 comfortable with their basic usage, and then dive into the more advanced

@@ -3,9 +3,9 @@ File formats
 
 You probably don't think about it, but file input and output takes up a surprising amount of time. Nearly every grad student has attempted to wade through custom formats created by a long-gone postdoc, or struggled with an in-house parsing script that breaks for random reasons. It doesn't have to be this way!
 
-###Does this sound like you?
+### Does this sound like you?
 
-#####A large portion of your scripts are file reading and writing.
+##### A large portion of your scripts are file reading and writing.
 
 <p align="center">
   <img src="img/one_file.png" height="250"/>
@@ -15,7 +15,7 @@ You start a project to test out a new idea, but have to deal with reading inputs
 
 Maybe, even with that time added, your inputs and outputs are still ugly. They're now a custom format that only you understand, and you're hesitant to share your work because of it.
 
-#####You want to output code results, but your data doesn't fit nicely into a plain text file.
+##### You want to output code results, but your data doesn't fit nicely into a plain text file.
 
 So, you adopt an all-too-common short-term solution. You end up making your own format, or modifying a format you are familiar with (e.g. molfile, pdb). Look at the files in [custom_format_examples](custom_format_examples) for real-world examples that we've personally had to handle.
 
@@ -25,7 +25,7 @@ This may fix the problem today, but is a poor long-term solution. This is what w
  * You have to explain your format to collaborators, and they will hold you responsible when bugs occur.
  * [Scope creep](http://en.wikipedia.org/wiki/Scope_creep). Adding result terms here and there will gradually complicate your file parsing code. Give it a couple of years, and it will be a 10k-line mess.
 
-#####File format inconsistencies are a barrier to lab collaboration.
+##### File format inconsistencies are a barrier to lab collaboration.
 
 <p align="center">
   <img src="img/team_communication.png" height="400"/>
@@ -33,13 +33,13 @@ This may fix the problem today, but is a poor long-term solution. This is what w
 
 With enough short-term fixes, everyone ends up with their own workflow. You end up having to organize meetings (entire meetings!) just to decipher a colleague's work. You end up "learning" code quirks (code X breaks when you use tabs, you have to ctrl+alt+del after running code Y, code Z outputs a file that doesn't load into code X). You are concerning yourself with things that are not publishable, educational, or even interesting.
 
-###The solution - look to the broader programming community!
+### The solution - look to the broader programming community!
 
 Whenever you feel you're doing something inefficiently, look to solutions adopted by the broadest possible community. Generalize your question as much as possible before going to google. In this case, don't ask "[how do I handle chemical simulation data?](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=how+do+I+handle+chemical+simulation+data%3F)" - that will lead you down a dark path. Instead, ask "[how do I handle arbitrary data?](https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=how%20do%20i%20handle%20arbitrary%20data)". This will lead you to solutions tested by communities *significantly* larger than our own. In fact, googling that exact phrase leads us to the right solution: [JSON](http://www.copterlabs.com/blog/json-what-it-is-how-it-works-how-to-use-it/).
 
 Let's take a step back and talk about file formats. Like you, many programmers have needed to read and write data to files. They've done it so much that they have adopted data exchange standards, and they've become so prevalent that many languages support them in their standard library. There are a lot of standards out there: [YAML](http://symfony.com/doc/current/components/yaml/yaml_format.html), [TOML](https://github.com/toml-lang/toml), [XML](http://www.w3schools.com/xml/), [JSON](http://www.w3schools.com/json/), [CSV](http://en.wikipedia.org/wiki/Comma-separated_values), and more. Most of us are okay with CSV data; custom file formats seem to arise only when our data doesn't fit nicely into a spreadsheet. All of the other above formats could be used to fix this, but JSON is the dominant standard due to its simplicity and ubiquity.
 
-###What does the file format look like?
+### What does the file format look like?
 
 From the [wiki](http://en.wikipedia.org/wiki/JSON):
 
@@ -66,7 +66,7 @@ From the [wiki](http://en.wikipedia.org/wiki/JSON):
 
 The basic types are *Number*, *String*, *Boolean*, *null*, *Array*, and *Object*. It may not seem like much, but it's enough to cover most use cases. Also remember that the whitespace doesn't matter! Just like many programming languages, the brackets are used instead of whitespace to show relationships.
 
-###An example
+### An example
 
 To show how we can quickly load and unload data between languages, let's create a json file with python, and then load and unload it in a couple of other languages. Running each version in order reads a json file, edits the data, and writes it as output.
 
@@ -81,25 +81,25 @@ julia step_5.jl
 Look through the files, and you'll see that they're all very short. With a couple of lines of code, you now have a format that is generalizable to any type of data in any language.
 
 
-###The advantages, in list form
+### The advantages, in list form
 
 <p align="center">
   <img src="img/no_file_io.png" height="250"/>
 </p>
 
-#####No more code for file reading and writing!
+##### No more code for file reading and writing!
 
  * Other people maintain the code that handles it.
  * There are robust JSON parsers baked in to almost every computer language out there.
    * Newer languages support in the standard library.
    * Older languages have packages: `json-fortran`, `json-c`, `json-cpp`, `json-java`, etc.
 
-#####Extensibility - no more custom formats required!
+##### Extensibility - no more custom formats required!
 
  * JSON was designed to handle arbitrary data.
    * If you find something you can't write in JSON, let me know.
 
-#####Easier collaboration.
+##### Easier collaboration.
 
  * Handling JSON data is *very* simple.
    * You've already learned it!
@@ -108,7 +108,7 @@ Look through the files, and you'll see that they're all very short. With a coupl
    * Even your text editors have json support!
  * You benefit from a cross-langauge standard.
 
-###Applying this to computational chemistry
+### Applying this to computational chemistry
 
 Having worked with chemicals, many of us have learned [literally hundreds](http://openbabel.org/docs/dev/FileFormats/Overview.html) of chemical file formats: mol, pdb, cif, smiles, sdf, car, etc. When people in the field hear of extensible formats like JSON, they view them simply as more formats to learn. Don't do this! The entire idea of these formats is to *avoid* wasting time learning about their nuances.
 
@@ -124,7 +124,7 @@ Another common misconception is that JSON is a competitor to the chemical file f
 
 Finally, your code probably requires reading/writing chemical files. That's completely fine, but don't write and support your own parser. Use a library like [open babel](http://openbabel.org/wiki/Main_Page) to handle the chemical formats. Keep your code simple, and you'll never have to read that molfile spec.
 
-####And finally, don't abuse files!
+#### And finally, don't abuse files!
 
 As discussed, JSON is a *file* format. Files should only be used to handle small amounts of unrelated data.
 
